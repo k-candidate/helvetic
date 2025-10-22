@@ -6,25 +6,26 @@ RUN groupadd -g 65532 nonroot && \
     useradd -u 65532 -g 65532 -s /bin/bash -m nonroot && \
     apt-get update && apt-get install -y --no-install-recommends \
     bash \
+    ca-certificates \
     curl \
-    wget \
-    less \
-    procps \
+    dnsutils \
+    file \
     iproute2 \
     iputils-ping \
-    netcat-openbsd \
-    dnsutils \
-    traceroute \
-    tcpdump \
-    lsof \
-    strace \
-    net-tools \
     jq \
-    socat \
+    less \
+    lsof \
+    net-tools \
+    netcat-openbsd \
     openssl \
-    ca-certificates \
+    procps \
+    socat \
+    strace \
     sudo \
+    tcpdump \
+    traceroute \
     vim \
+    wget \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN echo "nonroot ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/nonroot && \
