@@ -18,5 +18,5 @@ docker run --rm -it \
     kcandidate/helvetic:latest
 ```
 
-The default user has the `uid` and `gid` 65532.  
+The default user has the `uid` and `gid` 65532, which is convenient for `nonroot` Distroless images.  
 If the target container has the same, then you can skip `--user`.
