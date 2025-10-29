@@ -3,7 +3,9 @@
 Ubuntu sidecar container with essential debugging and networking tools.  
 Designed to run alongside a target container, when needed for troubleshooting, by sharing PID and network namespaces.
 
-For more context, see [https://k-candidate.github.io/2025/10/09/sec-vuln-fatigue-build-troubleshoot-minimal-containers.html](https://k-candidate.github.io/2025/10/09/sec-vuln-fatigue-build-troubleshoot-minimal-containers.html).
+For more context, see:
+- [https://k-candidate.github.io/2025/10/09/sec-vuln-fatigue-build-troubleshoot-minimal-containers.html](https://k-candidate.github.io/2025/10/09/sec-vuln-fatigue-build-troubleshoot-minimal-containers.html)
+- [https://k-candidate.github.io/2025/10/29/optimizing-docker-cache.html](https://k-candidate.github.io/2025/10/29/optimizing-docker-cache.html)
 
 ## Usage
 
