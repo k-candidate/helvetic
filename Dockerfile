@@ -2,8 +2,10 @@ FROM ubuntu:noble
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN groupadd -g 65532 nonroot && \
-    useradd -u 65532 -g 65532 -s /bin/bash -m nonroot && \
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    rm -f /etc/apt/apt.conf.d/docker-clean && \
+    echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' > /etc/apt/apt.conf.d/keep-cache && \
     apt-get update && apt-get install -y --no-install-recommends \
     bash \
     ca-certificates \
@@ -25,13 +27,13 @@ RUN groupadd -g 65532 nonroot && \
     tcpdump \
     traceroute \
     vim \
-    wget \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    wget
 
-RUN echo "nonroot ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/nonroot && \
-    chmod 0440 /etc/sudoers.d/nonroot
-
-RUN echo "alias ll='ls -alF'" >> /etc/bash.bashrc
+RUN groupadd -g 65532 nonroot && \
+    useradd -u 65532 -g 65532 -s /bin/bash -m nonroot && \
+    echo "nonroot ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/nonroot && \
+    chmod 0440 /etc/sudoers.d/nonroot && \
+    echo "alias ll='ls -alF'" >> /etc/bash.bashrc
 
 USER nonroot
 WORKDIR /home/nonroot
